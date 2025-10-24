@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Awaking in the Sleeping World | Marium</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Poppins", sans-serif; }
+    body { background: #fffaf5; color: #555; }
+
+    /* HEADER */
+    header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 15px 10%; background: #fff8e1; box-shadow: 0 2px 10px rgba(255, 152, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo-container {
+      display: flex; align-items: center;
+    }
+    .logo {
+      width: 60px;
+      height: 60px;
+      position: relative;
+      margin-right: 10px;
+    }
+    
+    .book-base {
+      width: 40px;
+      height: 50px;
+      background: linear-gradient(135deg, #ff9800, #ff5722);
+      border-radius: 3px 6px 6px 3px;
+      position: relative;
+    }
+    
+    .book-pages {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 34px;
+      height: 44px;
+      background: white;
+      border-radius: 2px 5px 5px 2px;
+    }
+    
+    .flower {
+      position: absolute;
+      top: 15px;
+      left: 25px;
+      width: 20px;
+      height: 20px;
+    }
+    
+    .petal {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: #ff4081;
+      border-radius: 50%;
+    }
+    
+    .petal-1 { top: 0; left: 5px; }
+    .petal-2 { top: 5px; left: 0; }
+    .petal-3 { top: 5px; left: 10px; }
+    .petal-4 { top: 10px; left: 5px; }
+    
+    .flower-center {
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      width: 5px;
+      height: 5px;
+      background: #ffeb3b;
+      border-radius: 50%;
+      z-index: 2;
+    }
+    
+    .stem {
+      position: absolute;
+      top: 20px;
+      left: 9px;
+      width: 1px;
+      height: 15px;
+      background: #4caf50;
+      transform: rotate(20deg);
+    }
+    
+    header h1 {
+      font-size: 1.8rem; 
+      background: linear-gradient(135deg, #ff9800, #ff4081);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    header p { font-size: 0.9rem; color: #ff9800; }
+
+    /* HERO */
+    .hero {
+      text-align: center; 
+      padding: 70px 10%; 
+      background: linear-gradient(135deg, #fff8e1, #ffecb3);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.05"><path fill="%23ff9800" d="M30,30 Q50,10 70,30 T90,50 T70,70 T50,90 T30,70 T10,50 T30,30 Z"/></svg>');
+    }
+    .hero h2 { 
+      font-size: 2.5rem; 
+      color: #ff5722; 
+      margin-bottom: 15px; 
+      position: relative;
+    }
+    .hero p { font-size: 1.1rem; margin-bottom: 25px; color: #ff7043; }
+    .hero button {
+      background: linear-gradient(135deg, #ff9800, #ff5722);
+      color: white; 
+      padding: 12px 30px;
+      border: none; 
+      border-radius: 25px; 
+      font-size: 1rem; 
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
+      position: relative;
+    }
+    .hero button:hover { 
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255, 152, 0, 0.4);
+    }
+
+    /* BOOK SHOWCASE */
+    .book-showcase {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      padding: 60px 5%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .book-cover {
+      flex: 1;
+      min-width: 300px;
+      max-width: 400px;
+      text-align: center;
+      position: relative;
+    }
+    
+    .book-cover::before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      background: linear-gradient(135deg, #ff9800, #ff4081);
+      border-radius: 15px;
+      z-index: -1;
+      opacity: 0.3;
+    }
+    
+    .book-cover img {
+      width: 100%;
+      max-width: 350px;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(255, 87, 34, 0.2);
+      transition: transform 0.3s ease;
+    }
+    
+    .book-cover img:hover {
+      transform: translateY(-10px) rotate(2deg);
+    }
+    
+    .book-details {
+      flex: 1;
+      min-width: 300px;
+      max-width: 600px;
+      text-align: left;
+    }
+    
+    .book-title {
+      font-family: "Dancing Script", cursive;
+      font-size: 2.5rem;
+      background: linear-gradient(135deg, #ff5722, #ff4081);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 15px;
+    }
+    
+    .book-author {
+      font-size: 1.2rem;
+      color: #ff9800;
+      margin-bottom: 20px;
+    }
+    
+    .book-description {
+      line-height: 1.6;
+      margin-bottom: 25px;
+      color: #666;
+    }
+    
+    .book-specs {
+      background: #fff8e1;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 2px 10px rgba(255, 152, 0, 0.1);
+      margin-bottom: 25px;
+      border-left: 4px solid #ff9800;
+    }
+    
+    .book-specs p {
+      margin: 8px 0;
+    }
+    
+    .book-specs span {
+      font-weight: bold;
+      color: #ff5722;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    
+    .cta-button {
+      background: linear-gradient(135deg, #ff9800, #ff5722);
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 4px 10px rgba(255, 152, 0, 0.3);
+    }
+    
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(255, 152, 0, 0.4);
+    }
+    
+    .cta-button.secondary {
+      background: transparent;
+      border: 2px solid #ff9800;
+      color: #ff9800;
+    }
+    
+    .cta-button.secondary:hover {
+      background: rgba(255, 152, 0, 0.1);
+    }
+
+    /* ABOUT AUTHOR */
+    .author-section {
+      padding: 60px 10%;
+      background: linear-gradient(135deg, #ffecb3, #ffccbc);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .author-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.05"><path fill="%23ff5722" d="M30,30 Q50,10 70,30 T90,50 T70,70 T50,90 T30,70 T10,50 T30,30 Z"/></svg>');
+    }
+    
+    .author-container {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      position: relative;
+    }
+    
+    .author-photo {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(255, 87, 34, 0.3);
+      border: 5px solid #ffecb3;
+    }
+    
+    .author-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .author-bio {
+      text-align: center;
+      line-height: 1.6;
+      color: #666;
+    }
+
+    /* CHAPTERS PREVIEW */
+    .chapters-section {
+      padding: 60px 10%;
+      text-align: center;
+      background: #fffaf5;
+    }
+    
+    .chapters-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+    
+    .chapter-card {
+      background: #fff;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 2px 10px rgba(255, 152, 0, 0.1);
+      text-align: left;
+      border-top: 4px solid #ff9800;
+      transition: transform 0.3s ease;
+    }
+    
+    .chapter-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(255, 152, 0, 0.2);
+    }
+    
+    .chapter-number {
+      font-weight: bold;
+      color: #ff5722;
+      margin-bottom: 10px;
+    }
+    
+    .chapter-title {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: #333;
+    }
+    
+    .chapter-excerpt {
+      font-style: italic;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    /* REVIEWS */
+    .reviews-section {
+      padding: 60px 10%;
+      text-align: center;
+      background: #fff5f5;
+    }
+    
+    .reviews-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .review-card {
+      background: #fff;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 2px 10px rgba(255, 152, 0, 0.1);
+      max-width: 350px;
+      text-align: left;
+      border-top: 4px solid #ff9800;
+      transition: transform 0.3s ease;
+    }
+    
+    .review-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(255, 152, 0, 0.2);
+    }
+    
+    .review-text {
+      font-style: italic;
+      margin-bottom: 15px;
+      line-height: 1.5;
+      color: #666;
+    }
+    
+    .reviewer {
+      font-weight: bold;
+      color: #ff5722;
+    }
+
+    /* FORM */
+    .form-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .contact-form {
+      flex: 1;
+      min-width: 300px;
+      max-width: 400px;
+      text-align: left;
+      background: #fff;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 2px 10px rgba(255, 152, 0, 0.1);
+      border-top: 4px solid #ff9800;
+    }
+    
+    .form-title {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #ff5722;
+    }
+    
+    .contact-form input, .contact-form textarea {
+      width: 100%; 
+      padding: 12px; 
+      margin: 8px 0; 
+      border: 1px solid #ffccbc; 
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border 0.3s;
+    }
+    
+    .contact-form input:focus, .contact-form textarea:focus {
+      border-color: #ff9800;
+      outline: none;
+    }
+    
+    .contact-form button {
+      width: 100%; 
+      background: linear-gradient(135deg, #ff9800, #ff5722);
+      border: none; 
+      color: white;
+      padding: 12px; 
+      border-radius: 20px; 
+      cursor: pointer; 
+      font-size: 1rem;
+      margin-top: 10px;
+      transition: 0.3s;
+      box-shadow: 0 4px 10px rgba(255, 152, 0, 0.3);
+    }
+    
+    .contact-form button:hover { 
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(255, 152, 0, 0.4);
+    }
+    
+    .google-form-container {
+      flex: 1;
+      min-width: 300px;
+      max-width: 500px;
+    }
+    
+    .google-form-container h3 {
+      text-align: center;
+      margin-bottom: 15px;
+      color: #ff5722;
+    }
+    
+    .google-form {
+      width: 100%;
+      height: 600px;
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 2px 10px rgba(255, 152, 0, 0.1);
+    }
+
+    /* SECTION TITLES */
+    .section-title {
+      font-size: 1.8rem; 
+      color: #ff5722; 
+      margin-bottom: 30px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(135deg, #ff9800, #ff4081);
+      border-radius: 3px;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #fff8e1; 
+      text-align: center; 
+      padding: 20px; 
+      margin-top: 40px;
+      font-size: 0.9rem; 
+      color: #ff9800;
+    }
+    
+    .social a { 
+      margin: 0 10px; 
+      text-decoration: none; 
+      color: #ff5722; 
+      font-weight: 500; 
+      transition: color 0.3s;
+    }
+    
+    .social a:hover {
+      color: #ff4081;
+    }
+
+    @media (max-width: 768px) {
+      header { 
+        flex-direction: column; 
+        gap: 5px; 
+        text-align: center; 
+      }
+      .book-showcase {
+        flex-direction: column;
+      }
+      .book-details {
+        text-align: center;
+      }
+      .cta-buttons {
+        justify-content: center;
+      }
+      .form-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      .contact-form, .google-form-container {
+        width: 100%;
+        max-width: 100%;
+      }
+      .google-form {
+        height: 700px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo-container">
+      <div class="logo">
+        <div class="book-base"></div>
+        <div class="book-pages"></div>
+        <div class="flower">
+          <div class="petal petal-1"></div>
+          <div class="petal petal-2"></div>
+          <div class="petal petal-3"></div>
+          <div class="petal petal-4"></div>
+          <div class="flower-center"></div>
+          <div class="stem"></div>
+        </div>
+      </div>
+      <div>
+        <h1>Awaking in the Sleeping World</h1>
+        <p>by Marium</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h2>Discover Meaning in the Mundane</h2>
+    <p>A raw, poetic guide to breaking free from life's autopilot and finding courage to live fully</p>
+    <button onclick="scrollToBook()">Get Your Copy</button>
+  </section>
+
+  <!-- Book Showcase -->
+  <section class="book-showcase">
+    <div class="book-cover">
+      <!-- Replace with your book cover image -->
+      <img src="D:\95233ef3-f42f-4e47-a451-474936a7a3da.jpg" alt="Awaking in the Sleeping World Book Cover">
+    </div>
+    
+    <div class="book-details">
+      <h2 class="book-title">Awaking in the Sleeping World</h2>
+      <p class="book-author">by Marium</p>
+      
+      <div class="book-description">
+        <p>"Awaking in the Sleeping World" invites you on a transformative journey of self-discovery and purpose. Through the misty paths of life's uncertainties, this book illuminates the way toward inner peace and fulfillment.</p>
+        
+        <p><strong>What you'll discover:</strong></p>
+        <ul style="margin: 15px 0 15px 20px;">
+          <li>How to break free from life's repetitive cycles and find deeper meaning</li>
+          <li>The power of gratitude and finding peace in simplicity</li>
+          <li>Practical wisdom for navigating the challenges of modern life</li>
+          <li>How to transform regret into growth and purpose</li>
+          <li>The art of living with intention and awareness</li>
+        </ul>
+        
+        <p>Marium's gentle, reflective storytelling blends warmth with wisdom, guiding readers to embrace every step of the journey with grace and resilience.</p>
+      </div>
+      
+      <div class="book-specs">
+        <p><span>Genre:</span> Self-Help / Personal Growth / Inspirational</p>
+        <p><span>Pages:</span> 100</p>
+        <p><span>Format:</span> Paperback, eBook</p>
+        
+        
+      </div>
+      
+
+  </section>
+
+  <!-- Chapters Preview -->
+  <section class="chapters-section">
+    <h3 class="section-title">Inside the Book</h3>
+    
+    <div class="chapters-container">
+      <div class="chapter-card">
+        <div class="chapter-number">Chapter 1</div>
+        <div class="chapter-title">Beyond Survival - The Search for Meaning</div>
+        <p class="chapter-excerpt">"Have you ever thought about your life—not just the plans for tomorrow or the worries of today, but the real meaning of it all?"</p>
+      </div>
+      
+      <div class="chapter-card">
+        <div class="chapter-number">Chapter 5</div>
+        <div class="chapter-title">When Time Slips Away</div>
+        <p class="chapter-excerpt">"Do you remember those summer vacations from childhood? When two months felt like two years?"</p>
+      </div>
+          
+      <div class="chapter-card">
+        <div class="chapter-number">Chapter 10</div>
+        <div class="chapter-title">Regret: The Weight We Carry Too Late</div>
+        <p class="chapter-excerpt">"I want to talk about regret—what I call the art of regression. Yes, the kind of silent ache we carry over the smallest of decisions..."</p>
+      </div>
+  </section>
+
+  <!-- About Author -->
+  <section class="author-section">
+    <h3 class="section-title">About the Author</h3>
+    
+    <div class="author-container">
+      <div class="author-photo">
+        <!-- Replace with your author photo -->
+        <img src="D:\1000035514.png" alt="Marium - Author Photo">
+      </div>
+      
+      <div class="author-bio">
+        <p><strong>Marium</strong> is a passionate writer and seeker of life's deeper meaning. Since childhood, she has been fascinated by the human experience and the search for purpose.</p>
+        
+        <p>She began writing this book after gaining significant life experience and understanding the reality of stepping into something new. Her writing is inspired by personal reflections, observations of the world around her, and a deep desire to help others find meaning in their own journeys.</p>
+        
+        <p>Marium writes to inspire, to comfort, and to spark the light within each reader. She believes that if her words help even one person understand themselves better, the purpose of her writing is fulfilled.</p>
+        
+        <p>When not writing, Marium enjoys exploring new ideas, connecting with people from different walks of life, and continuously learning from the greatest teacher of all - life itself.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section class="reviews-section">
+    <h3 class="section-title">What Readers Are Saying</h3>
+    
+    <div class="reviews-container">
+      <div class="review-card">
+        <p class="review-text">"This book completely captivated me from the first page. Marium's words feel like they were written just for me - speaking directly to the questions I've been carrying in my heart."</p>
+        <p class="reviewer">- Reader from Pakistan</p>
+      </div>
+      
+      <div class="review-card">
+        <p class="review-text">"A beautifully written exploration of what it means to be truly awake in a world that encourages us to sleepwalk through life. This book stayed with me long after I finished reading."</p>
+        <p class="reviewer">- Young Professional</p>
+      </div>
+      
+      <div class="review-card">
+        <p class="review-text">"Marium's gentle wisdom and relatable storytelling make complex philosophical concepts accessible and deeply personal. I've already recommended it to all my friends."</p>
+        <p class="reviewer">- Book Club Member</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section>
+   <p style="margin-bottom: 30px; text-align: center; color: #ff7043;">Have questions or want to connect? Reach out to Marium!</p>
+    
+    <div class="form-container">
+      <div class="contact-form">
+        <h3>contact-form</h3>
+        <p style="text-align: center; margin-bottom: 15px; color: #666;">Stay updated on new releases and events</p>
+        <iframe 
+          class="google-form"
+          src="https://docs.google.com/forms/d/e/1FAIpQLSdnjcXtyOMyqJqzVkassqr5tbJlR51PdicMtmhqXfOEatpC6w/viewform?embedded=true"
+          frameborder="0"
+          marginheight="0"
+          marginwidth="0">
+          Loading…
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Marium | Awaking in the Sleeping World | All Rights Reserved</p>
+    <div class="social">
+      <a href="mailto:mariumnizamani832@gmail.com">Email</a> |
+      <a href="#">Instagram</a> |
+    </div>
+    <p style="margin-top: 10px; font-size: 0.8rem;">For reviews and thoughts about this book, contact: mariumnizamani832@gmail.com</p>
+  </footer>
+
+  <script>
+    // Contact form functionality
+    function scrollToBook() {
+      document.querySelector('.book-showcase').scrollIntoView({ 
+        behavior: 'smooth' 
+      });
+    }
+    
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert("Thank you for your message! Marium will get back to you soon.");
+      this.reset();
+    });
+  </script>
+</body>
+</html>
